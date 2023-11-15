@@ -355,7 +355,8 @@ class ShowDetailsScreen extends StatelessWidget {
           ]),
           pw.ListView(
             children: datas
-                .map((e) => pw.Row(children: [
+                .map((e) => pw.Row(
+                  mainAxisAlignment: pw.MainAxisAlignment.spaceBetween, children: [
                       pw.Text(
                         (datas.indexOf(e) + 1).toString(),
                         style: pw.TextStyle(font: ttf),
@@ -382,11 +383,15 @@ class ShowDetailsScreen extends StatelessWidget {
         ],
       ),
     ));
-    final directory = await getTemporaryDirectory();
+    final directory = await getDownloadsDirectory();
 
-    final file = File("${directory.path}/x.pdf");
+    final xx = Uri.parse('${directory!.path}/XXXXXXXXXXXXX');
+    final createdDir = await Directory.fromUri(xx).create();
+
+    final file = await File("${createdDir.path}/x.pdf").create();
+    // print(await file.readAsBytes());
 
     final x = await file.writeAsBytes(await pdf.save());
-    print(x);
+    print(x.path);
   }
 }
