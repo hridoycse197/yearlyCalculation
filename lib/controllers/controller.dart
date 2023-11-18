@@ -15,7 +15,7 @@ class Controller extends GetxController {
   final yearlySelected = RxBool(false);
   final selectedDate = Rx<DateTime>(DateTime.now());
   final dataList = RxList<DataModel>([]);
-  final selectedValue = RxString('Income');
+  final selectedItem = RxString('Monthly');
   final totalIncomeAmount = RxDouble(0);
   final totalExpenseAmount = RxDouble(0);
   final totaloutFlow = RxDouble(0);
